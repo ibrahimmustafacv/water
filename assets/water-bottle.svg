@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bottleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#BBDEFB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#90CAF9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="waterLevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4FC3F7;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#29B6F6;stop-opacity:0.9" />
+    </linearGradient>
+    <filter id="bottleShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="rgba(52, 152, 219, 0.2)"/>
+    </filter>
+  </defs>
+  
+  <!-- Bottle cap -->
+  <rect x="42" y="15" width="16" height="8" rx="2" fill="#2196F3" filter="url(#bottleShadow)"/>
+  
+  <!-- Bottle neck -->
+  <rect x="44" y="23" width="12" height="12" fill="url(#bottleGradient)" filter="url(#bottleShadow)"/>
+  
+  <!-- Main bottle body -->
+  <rect x="30" y="35" width="40" height="50" rx="8" fill="url(#bottleGradient)" filter="url(#bottleShadow)"/>
+  
+  <!-- Water level inside bottle -->
+  <rect x="32" y="55" width="36" height="28" rx="6" fill="url(#waterLevel)"/>
+  
+  <!-- Bottle highlights -->
+  <rect x="32" y="37" width="3" height="46" rx="1.5" fill="rgba(255,255,255,0.6)"/>
+  <rect x="65" y="37" width="3" height="46" rx="1.5" fill="rgba(255,255,255,0.3)"/>
+  
+  <!-- Water movement lines -->
+  <path d="M35 60 Q42 58, 48 60 Q55 62, 62 60 Q65 59, 67 60" 
+        stroke="rgba(255,255,255,0.4)" 
+        stroke-width="1" 
+        fill="none" 
+        opacity="0.7"/>
+  <path d="M35 70 Q40 68, 45 70 Q52 72, 58 70 Q63 68, 67 70" 
+        stroke="rgba(255,255,255,0.3)" 
+        stroke-width="1" 
+        fill="none" 
+        opacity="0.5"/>
+</svg>

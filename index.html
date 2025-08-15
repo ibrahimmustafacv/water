@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>حاسبة شرب المياه اليومية</title>
+    <meta name="description" content="احسب احتياجك اليومي من الماء بناءً على وزنك ومستوى نشاطك">
+    
+    <!-- Google Fonts - Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="assets/water-drop.svg" alt="شعار" class="logo-icon">
+                    <span>حاسبة الماء</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#calculator" class="nav-link">الحاسبة</a>
+                    <a href="#tips" class="nav-link">النصائح</a>
+                    <a href="#benefits" class="nav-link">الفوائد</a>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content fade-in">
+                <div class="animated-icons">
+                    <img src="assets/water-drop.svg" alt="قطرة ماء" class="water-drop floating">
+                    <img src="assets/water-bottle.svg" alt="زجاجة ماء" class="water-bottle floating" style="animation-delay: 0.5s;">
+                </div>
+                <h1 class="main-title">اعرف احتياجك من الماء يوميًا</h1>
+                <p class="subtitle">حافظ على صحتك وحيويتك من خلال شرب الكمية المناسبة من الماء يوميًا</p>
+                <div class="importance-text">
+                    <p>الماء ضروري لجميع وظائف الجسم ويساعد في تنظيم درجة الحرارة، نقل المغذيات، وطرد السموم</p>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">60%</div>
+                        <div class="stat-label">من وزن الجسم ماء</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">أكواب يوميًا</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">أيام بدون ماء</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-waves">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V30L50,40C100,50,200,70,300,75C400,80,500,70,600,65C700,60,800,60,900,55C1000,50,1100,40,1150,35L1200,30V0Z" fill="rgba(255,255,255,0.1)"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">احسب احتياجك من الماء</h2>
+                <p class="section-subtitle">أدخل بياناتك لمعرفة الكمية المثلى من الماء التي تحتاجها يوميًا</p>
+            </div>
+            
+            <div class="calculator-wrapper">
+                <div class="calculator-card slide-up">
+                    <div class="progress-indicator">
+                        <div class="progress-step active" data-step="1">
+                            <span class="step-number">1</span>
+                            <span class="step-label">الوزن</span>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <span class="step-number">2</span>
+                            <span class="step-label">النشاط</span>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <span class="step-number">3</span>
+                            <span class="step-label">النتيجة</span>
+                        </div>
+                    </div>
+                    
+                    <form class="calculator-form" id="waterCalculatorForm">
+                        <div class="form-steps">
+                            <div class="form-step active" data-step="1">
+                                <div class="step-icon">
+                                    <i class="fas fa-weight"></i>
+                                </div>
+                                <h3>ما هو وزنك؟</h3>
+                                <div class="weight-input-wrapper">
+                                    <input type="number" id="weight" name="weight" min="1" max="300" required placeholder="70">
+                                    <span class="input-unit">كيلو جرام</span>
+                                </div>
+                                <div class="weight-slider">
+                                    <input type="range" id="weightSlider" min="30" max="200" value="70" class="slider">
+                                    <div class="slider-labels">
+                                        <span>30</span>
+                                        <span>200</span>
+                                    </div>
+                                </div>
+                                <span class="error-message" id="weightError"></span>
+                                <button type="button" class="next-btn" onclick="nextStep(2)">
+                                    <span>التالي</span>
+                                    <i class="fas fa-arrow-left"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="form-step" data-step="2">
+                                <div class="step-icon">
+                                    <i class="fas fa-running"></i>
+                                </div>
+                                <h3>ما هو مستوى نشاطك؟</h3>
+                                <div class="activity-options">
+                                    <label class="activity-option">
+                                        <input type="radio" name="activity" value="low">
+                                        <div class="option-card">
+                                            <i class="fas fa-couch"></i>
+                                            <h4>منخفض</h4>
+                                            <p>قليل الحركة، عمل مكتبي</p>
+                                            <span class="multiplier">30 مل × الوزن</span>
+                                        </div>
+                                    </label>
+                                    <label class="activity-option">
+                                        <input type="radio" name="activity" value="medium">
+                                        <div class="option-card">
+                                            <i class="fas fa-walking"></i>
+                                            <h4>متوسط</h4>
+                                            <p>تمارين خفيفة، مشي يومي</p>
+                                            <span class="multiplier">35 مل × الوزن</span>
+                                        </div>
+                                    </label>
+                                    <label class="activity-option">
+                                        <input type="radio" name="activity" value="high">
+                                        <div class="option-card">
+                                            <i class="fas fa-dumbbell"></i>
+                                            <h4>عالي</h4>
+                                            <p>تمارين مكثفة، رياضة منتظمة</p>
+                                            <span class="multiplier">40 مل × الوزن</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <span class="error-message" id="activityError"></span>
+                                <div class="step-buttons">
+                                    <button type="button" class="prev-btn" onclick="prevStep(1)">
+                                        <i class="fas fa-arrow-right"></i>
+                                        <span>السابق</span>
+                                    </button>
+                                    <button type="submit" class="calculate-btn">
+                                        <i class="fas fa-calculator"></i>
+                                        <span>احسب الآن</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="hydration-meter">
+                    <h4>مقياس الترطيب</h4>
+                    <div class="meter-container">
+                        <div class="meter-level" id="hydrationLevel"></div>
+                        <div class="meter-markers">
+                            <span>جاف</span>
+                            <span>مترطب</span>
+                            <span>مثالي</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="resultsSection" style="display: none;">
+        <div class="container">
+            <div class="results-wrapper">
+                <div class="result-card slide-up">
+                    <div class="result-header">
+                        <div class="result-icon">
+                            <img src="assets/glass.svg" alt="كوب ماء" class="glass-icon pulse">
+                        </div>
+                        <h3>نتيجة الحساب</h3>
+                    </div>
+                    
+                    <div class="result-display">
+                        <div class="water-amount-container">
+                            <div class="water-amount" id="waterAmount">
+                                <!-- Result will be displayed here -->
+                            </div>
+                            <div class="water-breakdown" id="waterBreakdown">
+                                <!-- Breakdown will be displayed here -->
+                            </div>
+                        </div>
+                        
+                        <div class="water-visualization">
+                            <div class="glass-container">
+                                <div class="water-level" id="waterLevelViz"></div>
+                                <div class="glass-outline"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-details">
+                        <p class="encouragement-text" id="encouragementText">
+                            <!-- Encouragement text will be displayed here -->
+                        </p>
+                        
+                        <div class="daily-schedule" id="dailySchedule">
+                            <h4><i class="fas fa-clock"></i> جدولك اليومي للماء</h4>
+                            <div class="schedule-timeline">
+                                <!-- Schedule will be generated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="health-benefits">
+                            <h4><i class="fas fa-heart"></i> فوائد شرب الماء</h4>
+                            <div class="benefits-grid">
+                                <div class="benefit-item">
+                                    <i class="fas fa-brain"></i>
+                                    <span>تحسين التركيز</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-thermometer-half"></i>
+                                    <span>تنظيم الحرارة</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-gem"></i>
+                                    <span>نضارة البشرة</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-weight"></i>
+                                    <span>التحكم في الوزن</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-actions">
+                        <button class="share-btn" onclick="shareResult()">
+                            <i class="fas fa-share-alt"></i>
+                            <span>مشاركة النتيجة</span>
+                        </button>
+                        <button class="save-btn" onclick="saveResult()">
+                            <i class="fas fa-bookmark"></i>
+                            <span>حفظ النتيجة</span>
+                        </button>
+                        <button class="recalculate-btn" onclick="resetCalculator()">
+                            <i class="fas fa-redo"></i>
+                            <span>حساب جديد</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Water Benefits Section -->
+    <section class="benefits-section" id="benefits">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">فوائد شرب الماء</h2>
+                <p class="section-subtitle">اكتشف كيف يؤثر الماء إيجابياً على صحتك وحيويتك</p>
+            </div>
+            
+            <div class="benefits-showcase">
+                <div class="benefit-card major-benefit">
+                    <div class="benefit-visual">
+                        <div class="animated-brain">
+                            <i class="fas fa-brain"></i>
+                            <div class="brain-waves"></div>
+                        </div>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>تحسين وظائف المخ</h3>
+                        <p>يحسن الماء التركيز والذاكرة ويقلل من الصداع</p>
+                        <div class="benefit-stats">
+                            <span class="stat">75%</span>
+                            <span class="stat-label">من المخ ماء</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <i class="fas fa-heart"></i>
+                        <h4>صحة القلب</h4>
+                        <p>يحسن الدورة الدموية ويقلل ضغط الدم</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-gem"></i>
+                        <h4>نضارة البشرة</h4>
+                        <p>يرطب البشرة ويؤخر علامات الشيخوخة</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-weight"></i>
+                        <h4>إنقاص الوزن</h4>
+                        <p>يزيد الشعور بالشبع ويحرق السعرات</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-kidney"></i>
+                        <h4>صحة الكلى</h4>
+                        <p>ينظف السموم ويمنع تكون الحصوات</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section" id="tips">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">نصائح ذكية لشرب الماء</h2>
+                <p class="section-subtitle">طرق عملية ومبتكرة لضمان ترطيب جسمك طوال اليوم</p>
+            </div>
+            
+            <div class="tips-container">
+                <div class="tips-timeline">
+                    <div class="timeline-item" data-time="6:00">
+                        <div class="time-marker">
+                            <i class="fas fa-sun"></i>
+                            <span>الصباح</span>
+                        </div>
+                        <div class="tip-content">
+                            <h4>ابدأ يومك بكوب ماء</h4>
+                            <p>اشرب كوب ماء فور استيقاظك لتنشيط الجسم والذهن</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-time="9:00">
+                        <div class="time-marker">
+                            <i class="fas fa-briefcase"></i>
+                            <span>العمل</span>
+                        </div>
+                        <div class="tip-content">
+                            <h4>احمل زجاجة ماء معك</h4>
+                            <p>احتفظ بزجاجة ماء على مكتبك كتذكير مرئي</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-time="12:00">
+                        <div class="time-marker">
+                            <i class="fas fa-utensils"></i>
+                            <span>الغداء</span>
+                        </div>
+                        <div class="tip-content">
+                            <h4>اشرب قبل الوجبات</h4>
+                            <p>اشرب كوب ماء قبل كل وجبة بـ 30 دقيقة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-time="15:00">
+                        <div class="time-marker">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>الرياضة</span>
+                        </div>
+                        <div class="tip-content">
+                            <h4>زد الكمية أثناء التمرين</h4>
+                            <p>اشرب الماء قبل وأثناء وبعد التمارين</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-time="21:00">
+                        <div class="time-marker">
+                            <i class="fas fa-moon"></i>
+                            <span>المساء</span>
+                        </div>
+                        <div class="tip-content">
+                            <h4>تقليل الكمية ليلاً</h4>
+                            <p>قلل شرب الماء قبل النوم بساعتين</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="smart-tips">
+                    <h3><i class="fas fa-lightbulb"></i> نصائح ذكية</h3>
+                    <div class="smart-tips-grid">
+                        <div class="smart-tip">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>استخدم تطبيق التذكير</h4>
+                            <p>فعل إشعارات منتظمة على هاتفك</p>
+                        </div>
+                        <div class="smart-tip">
+                            <i class="fas fa-thermometer-hot"></i>
+                            <h4>زد في الطقس الحار</h4>
+                            <p>اشرب 500 مل إضافية في الأيام الحارة</p>
+                        </div>
+                        <div class="smart-tip">
+                            <i class="fas fa-lemon"></i>
+                            <h4>أضف نكهة طبيعية</h4>
+                            <p>أضف الليمون أو النعناع لطعم منعش</p>
+                        </div>
+                        <div class="smart-tip">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>تتبع استهلاكك</h4>
+                            <p>سجل كمية الماء يومياً لتكوين عادة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Buttons Section -->
+    <section class="action-buttons-section">
+        <div class="container">
+            <div class="action-buttons">
+                <a href="https://ibrahimmustafacv.github.io/" target="_blank" class="action-btn projects-btn">
+                    <div class="btn-icon">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h4>للمزيد من المشاريع</h4>
+                        <p>اكتشف مشاريع أخرى مفيدة</p>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </a>
+                
+                <a href="https://ibrahimmustafacv.github.io/my-social-media-page/" target="_blank" class="action-btn follow-btn">
+                    <div class="btn-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h4>تابعنا هنا</h4>
+                        <p>للتواصل والمتابعة</p>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 حاسبة شرب المياه اليومية. جميع الحقوق محفوظة.</p>
+                <p class="disclaimer">هذه الحاسبة تقدم تقديرات عامة. استشر طبيبك لاحتياجات محددة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
